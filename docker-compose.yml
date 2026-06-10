@@ -1,0 +1,20 @@
+services:
+  db:
+    image: postgres:16
+    container_name: shanji-db
+    environment:
+      POSTGRES_USER: shanji
+      POSTGRES_PASSWORD: shanji
+      POSTGRES_DB: shanji
+    ports:
+      - "5433:5432"
+    volumes:
+      - shanji_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U shanji"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  shanji_pgdata:

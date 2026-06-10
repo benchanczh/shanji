@@ -1,0 +1,17 @@
+DROP TABLE IF EXISTS maid_links;
+DROP TABLE IF EXISTS suggestions;
+DROP TABLE IF EXISTS shopping_items;
+DROP TABLE IF EXISTS shopping_lists;
+DROP TABLE IF EXISTS meal_dishes;
+DROP TABLE IF EXISTS meal_slots;
+DROP TABLE IF EXISTS weekly_plans;
+DROP TABLE IF EXISTS recipe_steps;
+DROP TABLE IF EXISTS recipe_ingredients;
+DROP TABLE IF EXISTS recipes;
+DROP TABLE IF EXISTS diet_rules;
+DROP TABLE IF EXISTS ingredient_aliases;
+DROP TABLE IF EXISTS ingredients;
+DROP TABLE IF EXISTS members;
+DROP TABLE IF EXISTS accounts;
+DROP TABLE IF EXISTS households;
+DROP FUNCTION IF EXISTS update_updated_at();
