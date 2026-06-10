@@ -17,6 +17,7 @@ type Server struct {
 	log        *zap.Logger
 	accounts   *store.AccountStore
 	households *store.HouseholdStore
+	planning   *store.PlanningStore
 }
 
 func NewServer(cfg *config.Config, log *zap.Logger, pool *pgxpool.Pool) *Server {
@@ -25,6 +26,7 @@ func NewServer(cfg *config.Config, log *zap.Logger, pool *pgxpool.Pool) *Server 
 		log:        log,
 		accounts:   store.NewAccountStore(pool),
 		households: store.NewHouseholdStore(pool),
+		planning:   store.NewPlanningStore(pool),
 	}
 }
 
@@ -36,6 +38,8 @@ func (s *Server) Handler() http.Handler {
 	mux.HandleFunc("POST /api/v1/auth/login", s.handleLogin)
 	mux.HandleFunc("GET /api/v1/household", s.requireAuth(s.handleGetHousehold))
 	mux.HandleFunc("PUT /api/v1/household", s.requireAuth(s.handleUpdateHousehold))
+	mux.HandleFunc("POST /api/v1/plans/generate", s.requireAuth(s.handleGeneratePlan))
+	mux.HandleFunc("GET /api/v1/plans", s.requireAuth(s.handleGetPlan))
 
 	return s.withMiddleware(mux)
 }
