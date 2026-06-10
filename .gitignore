@@ -1,0 +1,18 @@
+# Go
+bin/
+*.test
+*.out
+
+# Env / secrets
+.env
+.env.local
+
+# Node / Next.js (web/)
+node_modules/
+.next/
+out/
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
