@@ -14,3 +14,6 @@ build:
 
 test:
 	go test ./...
+
+seed: ## Import recipe library from seed/seed.json (idempotent)
+	go run ./cmd/seed
