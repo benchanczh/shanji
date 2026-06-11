@@ -40,6 +40,11 @@ func (s *Server) Handler() http.Handler {
 	mux.HandleFunc("PUT /api/v1/household", s.requireAuth(s.handleUpdateHousehold))
 	mux.HandleFunc("POST /api/v1/plans/generate", s.requireAuth(s.handleGeneratePlan))
 	mux.HandleFunc("GET /api/v1/plans", s.requireAuth(s.handleGetPlan))
+	mux.HandleFunc("PATCH /api/v1/slots/{slotID}", s.requireAuth(s.handleLockSlot))
+	mux.HandleFunc("POST /api/v1/dishes/{dishID}/swap", s.requireAuth(s.handleSwapDish))
+	mux.HandleFunc("POST /api/v1/plans/{planID}/confirm", s.requireAuth(s.handleConfirmPlan))
+	mux.HandleFunc("GET /api/v1/plans/{planID}/shopping-list", s.requireAuth(s.handleGetShoppingList))
+	mux.HandleFunc("PATCH /api/v1/shopping-items/{itemID}", s.requireAuth(s.handleCheckItem))
 
 	return s.withMiddleware(mux)
 }

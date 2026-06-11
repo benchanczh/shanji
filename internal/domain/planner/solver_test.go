@@ -311,9 +311,60 @@ func TestDeterministicForSameSeed(t *testing.T) {
 	}
 }
 
-func TestLockedRegenerationViaHistoryIsNotNeeded(t *testing.T) {
-	// Locked-slot regeneration happens at the API layer by passing
-	// already-used mains through usedMainCount preloading — covered
-	// when that endpoint lands. This placeholder documents the intent.
-	t.Skip("locked-slot regeneration arrives with the swap endpoint")
+func TestLockedSlotsKeptVerbatimAndCountedForNoRepeat(t *testing.T) {
+	req := baseRequest()
+	lockedSlot := Slot{
+		Day: 0, Meal: Lunch,
+		Dishes: []Dish{
+			{RecipeID: 103, Course: CourseMain, Target: TargetAdult},
+			{RecipeID: 301, Course: CourseSide, Target: TargetAdult},
+		},
+	}
+	req.Locked = []Slot{lockedSlot}
+	req.Seed = 99
+
+	plan := Generate(req)
+
+	var day0Lunch *Slot
+	for i := range plan.Slots {
+		if plan.Slots[i].Day == 0 && plan.Slots[i].Meal == Lunch {
+			day0Lunch = &plan.Slots[i]
+		}
+	}
+	if day0Lunch == nil || !day0Lunch.Locked {
+		t.Fatal("locked slot missing or not marked locked")
+	}
+	if len(day0Lunch.Dishes) != 2 || day0Lunch.Dishes[0].RecipeID != 103 {
+		t.Fatalf("locked slot dishes changed: %+v", day0Lunch.Dishes)
+	}
+	// The locked main must count toward the week's no-repeat.
+	count := 0
+	for _, id := range mainsOf(plan) {
+		if id == 103 {
+			count++
+		}
+	}
+	if count != 1 {
+		t.Fatalf("locked main 103 appeared %d times, want exactly 1", count)
+	}
+}
+
+func TestPickReplacementExcludesAndRespectsRules(t *testing.T) {
+	recipes := []Recipe{
+		mkMain(1, "a", "粤菜", "pork", false, 11),
+		mkMain(2, "b", "粤菜", "fish", false, 12),
+		mkMain(3, "c", "家常", "beef", false, 13),
+	}
+	rules := HardRules{BannedIngredients: map[int64]bool{12: true}}
+	cfg := Config{PrimaryCuisine: "粤菜"}
+
+	// 1 excluded (current dish), 2 banned by allergy → must pick 3.
+	r, ok := PickReplacement(recipes, rules, cfg, CourseMain, map[int64]bool{1: true}, 5)
+	if !ok || r.ID != 3 {
+		t.Fatalf("expected recipe 3, got %+v ok=%v", r, ok)
+	}
+	// Nothing left → not ok.
+	if _, ok := PickReplacement(recipes, rules, cfg, CourseMain, map[int64]bool{1: true, 3: true}, 5); ok {
+		t.Fatal("expected no replacement available")
+	}
 }

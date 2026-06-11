@@ -88,9 +88,13 @@ type Request struct {
 	// ate it (counted back from the week start). Used for the
 	// 14-day recency penalty.
 	HistoryDaysAgo map[int64]int
-	Days           int
-	BabyMeals      bool
-	Seed           int64
+	// Locked carries slots from an existing draft that must be kept
+	// verbatim on regeneration. Their dishes count toward no-repeat,
+	// cuisine ratio and rotation state.
+	Locked    []Slot
+	Days      int
+	BabyMeals bool
+	Seed      int64
 }
 
 // Dish is one planned dish inside a meal.
@@ -104,6 +108,7 @@ type Dish struct {
 type Slot struct {
 	Day    int // 0-based offset from week start
 	Meal   MealType
+	Locked bool
 	Dishes []Dish
 }
 

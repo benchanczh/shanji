@@ -56,6 +56,11 @@ func (s *Server) handleGeneratePlan(w http.ResponseWriter, r *http.Request) {
 		s.fail(w, "load history", err)
 		return
 	}
+	lockedSlots, err := s.planning.LoadLockedSlots(ctx, claims.HouseholdID, weekStart)
+	if err != nil {
+		s.fail(w, "load locked slots", err)
+		return
+	}
 
 	cfg := planner.Config{CuisineRatio: h.CuisineRatio}
 	if h.PrimaryCuisine != nil {
@@ -71,6 +76,7 @@ func (s *Server) handleGeneratePlan(w http.ResponseWriter, r *http.Request) {
 		Config:         cfg,
 		Tmpl:           parseTemplate(h.MealTemplate),
 		HistoryDaysAgo: history,
+		Locked:         lockedSlots, // kept verbatim on regeneration
 		Days:           7,
 		BabyMeals:      true,
 		Seed:           time.Now().UnixNano(), // each regenerate explores a different variation

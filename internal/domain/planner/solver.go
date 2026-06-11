@@ -29,13 +29,91 @@ func Generate(req Request) WeekPlan {
 	s := newState(req)
 	plan := WeekPlan{}
 
+	locked := map[[2]any]Slot{}
+	for _, slot := range req.Locked {
+		locked[[2]any{slot.Day, slot.Meal}] = slot
+	}
+	build := func(day int, meal MealType, fill func() Slot) Slot {
+		if slot, ok := locked[[2]any{day, meal}]; ok {
+			slot.Locked = true
+			s.adoptLocked(slot)
+			return slot
+		}
+		return fill()
+	}
+
 	for day := 0; day < req.Days; day++ {
-		plan.Slots = append(plan.Slots, s.buildBreakfast(day))
-		plan.Slots = append(plan.Slots, s.buildMeal(day, Lunch, req.Tmpl.Lunch))
-		plan.Slots = append(plan.Slots, s.buildMeal(day, Dinner, req.Tmpl.Dinner))
+		plan.Slots = append(plan.Slots,
+			build(day, Breakfast, func() Slot { return s.buildBreakfast(day) }),
+			build(day, Lunch, func() Slot { return s.buildMeal(day, Lunch, req.Tmpl.Lunch) }),
+			build(day, Dinner, func() Slot { return s.buildMeal(day, Dinner, req.Tmpl.Dinner) }),
+		)
 	}
 	plan.Warnings = s.warnings
 	return plan
+}
+
+// adoptLocked registers a kept slot's dishes in the rotation state so
+// the rest of the week plans around them.
+func (s *state) adoptLocked(slot Slot) {
+	byID := map[int64]Recipe{}
+	for _, r := range s.req.Recipes {
+		byID[r.ID] = r
+	}
+	for _, d := range slot.Dishes {
+		if d.Target != TargetAdult {
+			continue
+		}
+		r, known := byID[d.RecipeID]
+		switch d.Course {
+		case CourseMain:
+			s.usedMainCount[d.RecipeID]++
+			s.mainsPicked++
+			if known {
+				if r.Cuisine == s.req.Config.PrimaryCuisine {
+					s.primaryPicked++
+				}
+				if r.ProteinType != "none" {
+					s.prevProtein = r.ProteinType
+				}
+			}
+		case CourseSide:
+			s.sideLastDay[d.RecipeID] = slot.Day
+		case CourseSoup:
+			s.soupLastDay[d.RecipeID] = slot.Day
+		case CourseBreakfast:
+			s.breakfastCount[d.RecipeID]++
+			s.lastBreakfast = d.RecipeID
+		}
+	}
+}
+
+// PickReplacement chooses a new recipe for "换一个": same course,
+// passing hard rules, not in the exclusion set, preferring the
+// household cuisine. Returns false when nothing qualifies.
+func PickReplacement(recipes []Recipe, rules HardRules, cfg Config, course Course, exclude map[int64]bool, seed int64) (Recipe, bool) {
+	pool := filter(recipes, func(r Recipe) bool {
+		return r.Course == course && !exclude[r.ID] && passesHardRules(r, rules)
+	})
+	if len(pool) == 0 {
+		return Recipe{}, false
+	}
+	rng := rand.New(rand.NewSource(seed))
+	best := pool[0]
+	bestScore := -1 << 30
+	for _, r := range pool {
+		score := rng.Intn(jitter)
+		switch r.Cuisine {
+		case cfg.PrimaryCuisine:
+			score += scorePrimaryCuisine
+		case cfg.SecondaryCuisine:
+			score += scoreSecondaryCuisine
+		}
+		if score > bestScore {
+			best, bestScore = r, score
+		}
+	}
+	return best, true
 }
 
 type state struct {

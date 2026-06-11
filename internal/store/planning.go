@@ -141,8 +141,8 @@ func (s *PlanningStore) SavePlan(ctx context.Context, householdID int64, weekSta
 		var slotID int64
 		day := weekStart.AddDate(0, 0, slot.Day)
 		if err := tx.QueryRow(ctx, `
-			INSERT INTO meal_slots (plan_id, day, meal_type) VALUES ($1, $2, $3)
-			RETURNING id`, planID, day, slot.Meal).Scan(&slotID); err != nil {
+			INSERT INTO meal_slots (plan_id, day, meal_type, locked) VALUES ($1, $2, $3, $4)
+			RETURNING id`, planID, day, slot.Meal, slot.Locked).Scan(&slotID); err != nil {
 			return 0, err
 		}
 		for _, d := range slot.Dishes {
@@ -167,11 +167,18 @@ type PlanView struct {
 }
 
 type DayView struct {
-	Date  string                `json:"date"`
-	Meals map[string][]DishView `json:"meals"`
+	Date  string              `json:"date"`
+	Meals map[string]MealView `json:"meals"`
+}
+
+type MealView struct {
+	SlotID int64      `json:"slot_id"`
+	Locked bool       `json:"locked"`
+	Dishes []DishView `json:"dishes"`
 }
 
 type DishView struct {
+	ID       int64  `json:"id"`
 	RecipeID int64  `json:"recipe_id"`
 	Name     string `json:"name"`
 	NameEN   string `json:"name_en"`
@@ -193,7 +200,8 @@ func (s *PlanningStore) GetPlan(ctx context.Context, householdID int64, weekStar
 	view.WeekStart = ws.Format("2006-01-02")
 
 	rows, err := s.pool.Query(ctx, `
-		SELECT ms.day, ms.meal_type, md.recipe_id, r.name, r.name_en, r.cuisine, md.course, md.target
+		SELECT ms.id, ms.locked, ms.day, ms.meal_type,
+		       md.id, md.recipe_id, r.name, r.name_en, r.cuisine, md.course, md.target
 		FROM meal_slots ms
 		JOIN meal_dishes md ON md.slot_id = ms.id
 		JOIN recipes r ON r.id = md.recipe_id
@@ -208,8 +216,10 @@ func (s *PlanningStore) GetPlan(ctx context.Context, householdID int64, weekStar
 	for rows.Next() {
 		var day time.Time
 		var meal string
+		var slotID int64
+		var locked bool
 		var d DishView
-		if err := rows.Scan(&day, &meal, &d.RecipeID, &d.Name, &d.NameEN, &d.Cuisine, &d.Course, &d.Target); err != nil {
+		if err := rows.Scan(&slotID, &locked, &day, &meal, &d.ID, &d.RecipeID, &d.Name, &d.NameEN, &d.Cuisine, &d.Course, &d.Target); err != nil {
 			return nil, err
 		}
 		key := day.Format("2006-01-02")
@@ -217,9 +227,57 @@ func (s *PlanningStore) GetPlan(ctx context.Context, householdID int64, weekStar
 		if !ok {
 			idx = len(view.Days)
 			dayIndex[key] = idx
-			view.Days = append(view.Days, DayView{Date: key, Meals: map[string][]DishView{}})
+			view.Days = append(view.Days, DayView{Date: key, Meals: map[string]MealView{}})
 		}
-		view.Days[idx].Meals[meal] = append(view.Days[idx].Meals[meal], d)
+		mv := view.Days[idx].Meals[meal]
+		mv.SlotID, mv.Locked = slotID, locked
+		mv.Dishes = append(mv.Dishes, d)
+		view.Days[idx].Meals[meal] = mv
 	}
 	return &view, rows.Err()
+}
+
+// LoadLockedSlots returns the locked slots of an existing draft for
+// the given week, in planner form (day offsets from weekStart).
+func (s *PlanningStore) LoadLockedSlots(ctx context.Context, householdID int64, weekStart time.Time) ([]planner.Slot, error) {
+	rows, err := s.pool.Query(ctx, `
+		SELECT ms.day, ms.meal_type, md.recipe_id, md.course, md.target
+		FROM meal_slots ms
+		JOIN weekly_plans wp ON wp.id = ms.plan_id
+		JOIN meal_dishes md ON md.slot_id = ms.id
+		WHERE wp.household_id = $1 AND wp.week_start = $2 AND wp.status = 'draft' AND ms.locked
+		ORDER BY ms.id, md.id`, householdID, weekStart)
+	if err != nil {
+		return nil, fmt.Errorf("load locked slots: %w", err)
+	}
+	defer rows.Close()
+
+	byKey := map[string]*planner.Slot{}
+	var order []string
+	for rows.Next() {
+		var day time.Time
+		var meal, course, target string
+		var recipeID int64
+		if err := rows.Scan(&day, &meal, &recipeID, &course, &target); err != nil {
+			return nil, err
+		}
+		offset := int(day.Sub(weekStart).Hours() / 24)
+		key := fmt.Sprintf("%d-%s", offset, meal)
+		slot, ok := byKey[key]
+		if !ok {
+			slot = &planner.Slot{Day: offset, Meal: planner.MealType(meal), Locked: true}
+			byKey[key] = slot
+			order = append(order, key)
+		}
+		slot.Dishes = append(slot.Dishes, planner.Dish{
+			RecipeID: recipeID,
+			Course:   planner.Course(course),
+			Target:   planner.Target(target),
+		})
+	}
+	var out []planner.Slot
+	for _, k := range order {
+		out = append(out, *byKey[k])
+	}
+	return out, rows.Err()
 }
