@@ -18,6 +18,8 @@ type Server struct {
 	accounts   *store.AccountStore
 	households *store.HouseholdStore
 	planning   *store.PlanningStore
+	maid       *store.MaidStore
+	family     *store.FamilyStore
 }
 
 func NewServer(cfg *config.Config, log *zap.Logger, pool *pgxpool.Pool) *Server {
@@ -27,6 +29,8 @@ func NewServer(cfg *config.Config, log *zap.Logger, pool *pgxpool.Pool) *Server 
 		accounts:   store.NewAccountStore(pool),
 		households: store.NewHouseholdStore(pool),
 		planning:   store.NewPlanningStore(pool),
+		maid:       store.NewMaidStore(pool),
+		family:     store.NewFamilyStore(pool),
 	}
 }
 
@@ -45,6 +49,22 @@ func (s *Server) Handler() http.Handler {
 	mux.HandleFunc("POST /api/v1/plans/{planID}/confirm", s.requireAuth(s.handleConfirmPlan))
 	mux.HandleFunc("GET /api/v1/plans/{planID}/shopping-list", s.requireAuth(s.handleGetShoppingList))
 	mux.HandleFunc("PATCH /api/v1/shopping-items/{itemID}", s.requireAuth(s.handleCheckItem))
+
+	mux.HandleFunc("GET /api/v1/members", s.requireAuth(s.handleListMembers))
+	mux.HandleFunc("POST /api/v1/members", s.requireAuth(s.handleCreateMember))
+	mux.HandleFunc("DELETE /api/v1/members/{id}", s.requireAuth(s.handleDeleteMember))
+	mux.HandleFunc("GET /api/v1/rules", s.requireAuth(s.handleListRules))
+	mux.HandleFunc("POST /api/v1/rules", s.requireAuth(s.handleCreateRule))
+	mux.HandleFunc("DELETE /api/v1/rules/{id}", s.requireAuth(s.handleDeleteRule))
+	mux.HandleFunc("GET /api/v1/recipes", s.requireAuth(s.handleListRecipes))
+
+	mux.HandleFunc("POST /api/v1/maid-link", s.requireAuth(s.handleCreateMaidLink))
+	mux.HandleFunc("DELETE /api/v1/maid-link", s.requireAuth(s.handleRevokeMaidLink))
+	mux.HandleFunc("GET /api/v1/maid/today", s.requireMaidToken(s.handleMaidToday))
+	mux.HandleFunc("POST /api/v1/maid/suggestions", s.requireMaidToken(s.handleMaidSuggest))
+	mux.HandleFunc("GET /api/v1/suggestions", s.requireAuth(s.handleListSuggestions))
+	mux.HandleFunc("POST /api/v1/suggestions/{id}/approve", s.requireAuth(s.handleReviewSuggestion("approved")))
+	mux.HandleFunc("POST /api/v1/suggestions/{id}/reject", s.requireAuth(s.handleReviewSuggestion("rejected")))
 
 	return s.withMiddleware(mux)
 }
