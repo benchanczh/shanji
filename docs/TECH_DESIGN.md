@@ -251,6 +251,15 @@ generateWeekPlan(household, rules, recipes, history, intent?):
 
 实现：`internal/ai` 包，使用官方 **anthropic-sdk-go**，所有结构化输出走 **tool use 强制 JSON**，按 JSON Schema 校验（与 API 入参共用 Go struct 定义，E13）。
 
+**供应商无关（v0.3 用户决策：支持 Kimi）**：`internal/ai` 不写死供应商，端点/密钥/模型全部走配置——
+```
+SHANJI_AI_BASE_URL   # 默认 Anthropic；Kimi 用 https://api.moonshot.cn/anthropic（Anthropic 兼容端点，SDK 不变）
+SHANJI_AI_API_KEY
+SHANJI_AI_MODEL_FAST # 意图解析/翻译（如 kimi-k2 / claude-haiku-4-5）
+SHANJI_AI_MODEL_GEN  # 食谱生成（如 kimi-k2 / claude-sonnet-4-6）
+```
+选择 Kimi 的理由：中文菜谱生成是国产模型强项、成本约为 Sonnet 的 1/5、Anthropic 兼容端点使接入零成本。校验流水线本就按"不信任模型输出"设计（schema + 食材对齐 + pending_review + 重试），供应商无关，质量不达预期时换模型只是改环境变量。下表模型列为"档位"示意，实际型号由配置决定。
+
 | 任务 | 模型 | 输入→输出 | 校验 |
 |---|---|---|---|
 | 意图解析 | Haiku | "想吃红烧肉，这周清淡点" → `{wanted:["红烧肉"], style:"light", cuisine_override:null}` | schema 校验；解析失败 = 当作无意图，不阻塞生成 |
