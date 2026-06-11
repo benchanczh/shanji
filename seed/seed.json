@@ -1,0 +1,412 @@
+{
+  "ingredients": [
+    {"canonical_name": "鲈鱼", "name_en": "sea bass", "category": "seafood", "default_unit": "条", "aliases": ["海鲈鱼"]},
+    {"canonical_name": "三黄鸡", "name_en": "whole chicken", "category": "meat", "default_unit": "只", "aliases": ["整鸡", "光鸡"]},
+    {"canonical_name": "鸡胸肉", "name_en": "chicken breast", "category": "meat", "default_unit": "g", "aliases": ["鸡脯肉"]},
+    {"canonical_name": "排骨", "name_en": "pork ribs", "category": "meat", "default_unit": "g", "aliases": ["猪肋排", "肋排"]},
+    {"canonical_name": "牛肉", "name_en": "beef", "category": "meat", "default_unit": "g", "aliases": ["牛肉片", "牛腩"]},
+    {"canonical_name": "五花肉", "name_en": "pork belly", "category": "meat", "default_unit": "g", "aliases": ["猪五花", "带皮五花肉"]},
+    {"canonical_name": "猪肉末", "name_en": "ground pork", "category": "meat", "default_unit": "g", "aliases": ["猪绞肉", "肉末", "肉糜"]},
+    {"canonical_name": "猪瘦肉", "name_en": "lean pork", "category": "meat", "default_unit": "g", "aliases": ["瘦肉"]},
+    {"canonical_name": "虾仁", "name_en": "peeled shrimp", "category": "seafood", "default_unit": "g", "aliases": ["鲜虾仁"]},
+    {"canonical_name": "鸡蛋", "name_en": "egg", "category": "dairy", "default_unit": "个", "aliases": ["土鸡蛋"]},
+    {"canonical_name": "皮蛋", "name_en": "century egg", "category": "dairy", "default_unit": "个", "aliases": ["松花蛋"]},
+    {"canonical_name": "豆腐", "name_en": "tofu", "category": "other", "default_unit": "块", "aliases": ["嫩豆腐", "南豆腐"]},
+    {"canonical_name": "梅菜", "name_en": "preserved mustard greens", "category": "condiment", "default_unit": "g", "aliases": ["梅干菜"]},
+    {"canonical_name": "菜心", "name_en": "choy sum", "category": "vegetable", "default_unit": "g", "aliases": ["菜薹"]},
+    {"canonical_name": "西兰花", "name_en": "broccoli", "category": "vegetable", "default_unit": "颗", "aliases": ["绿花菜"]},
+    {"canonical_name": "包菜", "name_en": "cabbage", "category": "vegetable", "default_unit": "颗", "aliases": ["卷心菜", "圆白菜", "椰菜"]},
+    {"canonical_name": "番茄", "name_en": "tomato", "category": "vegetable", "default_unit": "个", "aliases": ["西红柿"]},
+    {"canonical_name": "土豆", "name_en": "potato", "category": "vegetable", "default_unit": "个", "aliases": ["马铃薯", "洋芋"]},
+    {"canonical_name": "玉米", "name_en": "sweet corn", "category": "vegetable", "default_unit": "根", "aliases": ["甜玉米"]},
+    {"canonical_name": "胡萝卜", "name_en": "carrot", "category": "vegetable", "default_unit": "根", "aliases": ["红萝卜"]},
+    {"canonical_name": "青椒", "name_en": "green pepper", "category": "vegetable", "default_unit": "个", "aliases": ["尖椒", "青尖椒"]},
+    {"canonical_name": "紫菜", "name_en": "dried seaweed", "category": "other", "default_unit": "g", "aliases": ["干紫菜"]},
+    {"canonical_name": "大米", "name_en": "rice", "category": "staple", "default_unit": "g", "aliases": ["粳米", "香米"]},
+    {"canonical_name": "燕麦片", "name_en": "rolled oats", "category": "staple", "default_unit": "g", "aliases": ["燕麦"]},
+    {"canonical_name": "牛奶", "name_en": "milk", "category": "dairy", "default_unit": "ml", "aliases": ["纯牛奶"]},
+    {"canonical_name": "姜", "name_en": "ginger", "category": "condiment", "default_unit": "g", "aliases": ["生姜", "姜片"]},
+    {"canonical_name": "葱", "name_en": "scallion", "category": "condiment", "default_unit": "g", "aliases": ["小葱", "香葱"]},
+    {"canonical_name": "蒜", "name_en": "garlic", "category": "condiment", "default_unit": "g", "aliases": ["大蒜", "蒜头", "蒜瓣"]},
+    {"canonical_name": "干辣椒", "name_en": "dried chili", "category": "condiment", "default_unit": "g", "aliases": ["干红椒"]},
+    {"canonical_name": "花椒", "name_en": "Sichuan peppercorn", "category": "condiment", "default_unit": "g", "aliases": ["麻椒"]},
+    {"canonical_name": "豆瓣酱", "name_en": "doubanjiang chili bean paste", "category": "condiment", "default_unit": "g", "aliases": ["郫县豆瓣酱"]},
+    {"canonical_name": "豆豉", "name_en": "fermented black beans", "category": "condiment", "default_unit": "g", "aliases": ["黑豆豉"]},
+    {"canonical_name": "生抽", "name_en": "light soy sauce", "category": "condiment", "default_unit": "ml", "aliases": ["酱油"]},
+    {"canonical_name": "老抽", "name_en": "dark soy sauce", "category": "condiment", "default_unit": "ml", "aliases": []},
+    {"canonical_name": "蒸鱼豉油", "name_en": "steamed fish soy sauce", "category": "condiment", "default_unit": "ml", "aliases": []},
+    {"canonical_name": "蚝油", "name_en": "oyster sauce", "category": "condiment", "default_unit": "ml", "aliases": []},
+    {"canonical_name": "料酒", "name_en": "cooking wine", "category": "condiment", "default_unit": "ml", "aliases": ["黄酒"]},
+    {"canonical_name": "香醋", "name_en": "black vinegar", "category": "condiment", "default_unit": "ml", "aliases": ["陈醋"]},
+    {"canonical_name": "白糖", "name_en": "sugar", "category": "condiment", "default_unit": "g", "aliases": ["砂糖", "冰糖"]},
+    {"canonical_name": "盐", "name_en": "salt", "category": "condiment", "default_unit": "g", "aliases": ["食盐"]},
+    {"canonical_name": "白胡椒粉", "name_en": "white pepper", "category": "condiment", "default_unit": "g", "aliases": ["胡椒粉"]},
+    {"canonical_name": "淀粉", "name_en": "corn starch", "category": "condiment", "default_unit": "g", "aliases": ["玉米淀粉", "生粉"]},
+    {"canonical_name": "食用油", "name_en": "cooking oil", "category": "condiment", "default_unit": "ml", "aliases": ["植物油"]},
+    {"canonical_name": "香油", "name_en": "sesame oil", "category": "condiment", "default_unit": "ml", "aliases": ["芝麻油"]},
+    {"canonical_name": "花生米", "name_en": "peanuts", "category": "other", "default_unit": "g", "aliases": ["花生"]}
+  ],
+  "recipes": [
+    {
+      "name": "清蒸鲈鱼", "name_en": "Steamed sea bass", "cuisine": "粤菜", "course": "main",
+      "minutes": 25, "difficulty": "easy", "protein_type": "fish",
+      "nutrition_tags": ["high_protein", "low_oil"], "baby_adaptable": true,
+      "ingredients": [
+        {"name": "鲈鱼", "qty": 1, "unit": "条", "note": "约600g"},
+        {"name": "姜", "qty": 20, "unit": "g", "note": "切丝"},
+        {"name": "葱", "qty": 2, "unit": "根", "note": "切丝"},
+        {"name": "蒸鱼豉油", "qty": 30, "unit": "ml"},
+        {"name": "食用油", "qty": 15, "unit": "ml"},
+        {"name": "料酒", "qty": null, "unit": "适量"}
+      ],
+      "steps": [
+        {"cn": "鲈鱼洗净两面划刀，抹少许料酒，鱼身铺姜丝。", "en": "Clean the fish and score both sides. Rub with a little cooking wine and lay ginger strips on top."},
+        {"cn": "水开后入锅大火蒸8分钟，关火再焖2分钟，倒掉盘中汁水。", "en": "Steam over high heat for 8 minutes after the water boils, rest 2 minutes off heat, then pour away the liquid in the plate."},
+        {"cn": "给宝宝从鱼背取一小块无刺鱼肉。换新葱姜丝铺面，淋蒸鱼豉油，浇热油激香。", "en": "Take a small boneless piece from the back for the baby. Top with fresh scallion and ginger, pour steamed fish soy sauce, then drizzle with hot oil.", "baby_split_point": true}
+      ]
+    },
+    {
+      "name": "白切鸡", "name_en": "White cut chicken", "cuisine": "粤菜", "course": "main",
+      "minutes": 45, "difficulty": "medium", "protein_type": "chicken",
+      "nutrition_tags": ["high_protein"], "baby_adaptable": false,
+      "ingredients": [
+        {"name": "三黄鸡", "qty": 1, "unit": "只"},
+        {"name": "姜", "qty": 50, "unit": "g"},
+        {"name": "葱", "qty": 3, "unit": "根"},
+        {"name": "盐", "qty": null, "unit": "适量"},
+        {"name": "食用油", "qty": 20, "unit": "ml"}
+      ],
+      "steps": [
+        {"cn": "整鸡冷水下锅，加姜片葱结，水开后转小火浸煮约25分钟。", "en": "Put the whole chicken in cold water with ginger and scallion knots. Bring to a boil, then poach on low heat for about 25 minutes."},
+        {"cn": "捞出立即过冰水，让鸡皮收紧爽滑。", "en": "Transfer immediately into ice water to firm up the skin."},
+        {"cn": "姜葱切末加盐，浇热油做蘸料，斩件装盘。", "en": "Mince ginger and scallion with salt, pour hot oil over to make the dip. Chop the chicken and serve."}
+      ]
+    },
+    {
+      "name": "豉汁蒸排骨", "name_en": "Steamed pork ribs with black bean sauce", "cuisine": "粤菜", "course": "main",
+      "minutes": 30, "difficulty": "easy", "protein_type": "pork",
+      "nutrition_tags": ["high_protein"], "baby_adaptable": false,
+      "ingredients": [
+        {"name": "排骨", "qty": 400, "unit": "g", "note": "斩小段"},
+        {"name": "豆豉", "qty": 15, "unit": "g"},
+        {"name": "蒜", "qty": 15, "unit": "g"},
+        {"name": "生抽", "qty": 15, "unit": "ml"},
+        {"name": "白糖", "qty": 5, "unit": "g"},
+        {"name": "淀粉", "qty": 10, "unit": "g"},
+        {"name": "食用油", "qty": 10, "unit": "ml"}
+      ],
+      "steps": [
+        {"cn": "排骨冲洗血水沥干，加豆豉碎、蒜末、生抽、糖、淀粉和油抓匀，腌15分钟。", "en": "Rinse and drain the ribs. Mix well with chopped black beans, minced garlic, soy sauce, sugar, starch and oil. Marinate 15 minutes."},
+        {"cn": "平铺浅盘，水开后大火蒸12分钟至熟透。", "en": "Spread on a shallow plate. Steam over high heat for 12 minutes until cooked through."}
+      ]
+    },
+    {
+      "name": "蚝油牛肉", "name_en": "Beef in oyster sauce", "cuisine": "粤菜", "course": "main",
+      "minutes": 20, "difficulty": "easy", "protein_type": "beef",
+      "nutrition_tags": ["high_protein"], "baby_adaptable": false,
+      "ingredients": [
+        {"name": "牛肉", "qty": 300, "unit": "g", "note": "逆纹切薄片"},
+        {"name": "蚝油", "qty": 20, "unit": "ml"},
+        {"name": "生抽", "qty": 10, "unit": "ml"},
+        {"name": "淀粉", "qty": 10, "unit": "g"},
+        {"name": "姜", "qty": 10, "unit": "g"},
+        {"name": "葱", "qty": 2, "unit": "根"},
+        {"name": "食用油", "qty": 20, "unit": "ml"},
+        {"name": "白糖", "qty": null, "unit": "适量"}
+      ],
+      "steps": [
+        {"cn": "牛肉片加生抽、淀粉和少许油抓匀，腌10分钟。", "en": "Mix beef slices with soy sauce, starch and a little oil. Marinate 10 minutes."},
+        {"cn": "热锅冷油下姜片爆香，大火快炒牛肉至变色盛出。", "en": "Heat oil with ginger slices, stir-fry beef on high heat until just browned, remove."},
+        {"cn": "锅内加蚝油、少许糖和水煮开，倒回牛肉和葱段翻匀即可。", "en": "Boil oyster sauce with a little sugar and water in the wok, return the beef with scallion and toss to coat."}
+      ]
+    },
+    {
+      "name": "滑蛋虾仁", "name_en": "Scrambled eggs with shrimp", "cuisine": "粤菜", "course": "main",
+      "minutes": 15, "difficulty": "easy", "protein_type": "shrimp",
+      "nutrition_tags": ["high_protein", "quick"], "baby_adaptable": true,
+      "ingredients": [
+        {"name": "虾仁", "qty": 200, "unit": "g"},
+        {"name": "鸡蛋", "qty": 4, "unit": "个"},
+        {"name": "盐", "qty": null, "unit": "适量"},
+        {"name": "淀粉", "qty": 5, "unit": "g"},
+        {"name": "食用油", "qty": 20, "unit": "ml"},
+        {"name": "葱", "qty": 1, "unit": "根"}
+      ],
+      "steps": [
+        {"cn": "虾仁用淀粉抓洗后冲净，焯水20秒捞出。", "en": "Rub shrimp with starch, rinse, then blanch for 20 seconds and drain."},
+        {"cn": "给宝宝留几只虾仁和一勺蛋液单独炒熟（不加盐）。", "en": "Set aside a few shrimp and a spoonful of egg for the baby, cooked separately without salt.", "baby_split_point": true},
+        {"cn": "蛋液加盐打散，拌入虾仁，热锅中小火倒入，轻推至半凝固撒葱花出锅。", "en": "Beat eggs with salt, fold in shrimp. Pour into a hot pan over medium-low heat, gently push until just set, finish with scallion."}
+      ]
+    },
+    {
+      "name": "梅菜蒸肉饼", "name_en": "Steamed pork patty with preserved mustard greens", "cuisine": "粤菜", "course": "main",
+      "minutes": 30, "difficulty": "easy", "protein_type": "pork",
+      "nutrition_tags": [], "baby_adaptable": false,
+      "ingredients": [
+        {"name": "猪肉末", "qty": 300, "unit": "g", "note": "三分肥七分瘦"},
+        {"name": "梅菜", "qty": 50, "unit": "g", "note": "泡发洗净切碎"},
+        {"name": "生抽", "qty": 15, "unit": "ml"},
+        {"name": "白糖", "qty": 5, "unit": "g"},
+        {"name": "淀粉", "qty": 10, "unit": "g"},
+        {"name": "姜", "qty": 10, "unit": "g"}
+      ],
+      "steps": [
+        {"cn": "肉末加姜末、生抽、糖、淀粉和少量水，顺一个方向搅打上劲。", "en": "Mix ground pork with minced ginger, soy sauce, sugar, starch and a little water. Stir in one direction until springy."},
+        {"cn": "拌入梅菜碎，压成浅盘肉饼。", "en": "Fold in the chopped preserved greens and press into a shallow patty on a plate."},
+        {"cn": "水开后中大火蒸15分钟至熟。", "en": "Steam over medium-high heat for 15 minutes until cooked through."}
+      ]
+    },
+    {
+      "name": "麻婆豆腐", "name_en": "Mapo tofu", "cuisine": "川菜", "course": "main",
+      "minutes": 20, "difficulty": "easy", "protein_type": "tofu",
+      "nutrition_tags": ["spicy"], "baby_adaptable": false,
+      "ingredients": [
+        {"name": "豆腐", "qty": 1, "unit": "块", "note": "切2cm方块"},
+        {"name": "猪肉末", "qty": 100, "unit": "g"},
+        {"name": "豆瓣酱", "qty": 25, "unit": "g"},
+        {"name": "花椒", "qty": 3, "unit": "g", "note": "磨粉"},
+        {"name": "蒜", "qty": 10, "unit": "g"},
+        {"name": "葱", "qty": 1, "unit": "根"},
+        {"name": "淀粉", "qty": 10, "unit": "g"},
+        {"name": "食用油", "qty": 20, "unit": "ml"}
+      ],
+      "steps": [
+        {"cn": "豆腐块入淡盐水中焯1分钟捞出备用。", "en": "Blanch tofu cubes in lightly salted water for 1 minute, drain."},
+        {"cn": "炒香肉末，下豆瓣酱和蒜末炒出红油，加水煮开。", "en": "Brown the ground pork, add doubanjiang and garlic until the oil turns red, then add water and bring to a boil."},
+        {"cn": "下豆腐轻推煮3分钟，淀粉水勾芡，撒花椒粉和葱花。", "en": "Add tofu and simmer gently 3 minutes, thicken with starch slurry, finish with ground Sichuan pepper and scallion."}
+      ]
+    },
+    {
+      "name": "宫保鸡丁", "name_en": "Kung pao chicken", "cuisine": "川菜", "course": "main",
+      "minutes": 25, "difficulty": "medium", "protein_type": "chicken",
+      "nutrition_tags": ["spicy"], "baby_adaptable": false,
+      "ingredients": [
+        {"name": "鸡胸肉", "qty": 300, "unit": "g", "note": "切丁"},
+        {"name": "花生米", "qty": 50, "unit": "g"},
+        {"name": "干辣椒", "qty": 8, "unit": "g", "note": "剪段"},
+        {"name": "花椒", "qty": 2, "unit": "g"},
+        {"name": "生抽", "qty": 15, "unit": "ml"},
+        {"name": "香醋", "qty": 10, "unit": "ml"},
+        {"name": "白糖", "qty": 10, "unit": "g"},
+        {"name": "淀粉", "qty": 10, "unit": "g"},
+        {"name": "葱", "qty": 2, "unit": "根", "note": "切段"},
+        {"name": "食用油", "qty": 25, "unit": "ml"}
+      ],
+      "steps": [
+        {"cn": "鸡丁用生抽、淀粉腌10分钟；调碗汁：生抽、香醋、糖、淀粉加两勺水。", "en": "Marinate chicken with soy sauce and starch for 10 minutes. Mix the sauce: soy sauce, vinegar, sugar, starch and two spoons of water."},
+        {"cn": "小火炸香花生米盛出；下干辣椒花椒爆香，转大火炒鸡丁至变色。", "en": "Fry peanuts on low heat and set aside. Sizzle dried chilies and peppercorns, then stir-fry chicken on high heat until it turns color."},
+        {"cn": "倒入碗汁炒至浓稠，加葱段和花生米翻匀出锅。", "en": "Pour in the sauce and stir until glossy, toss in scallion and peanuts, serve."}
+      ]
+    },
+    {
+      "name": "农家小炒肉", "name_en": "Hunan stir-fried pork with peppers", "cuisine": "湘菜", "course": "main",
+      "minutes": 20, "difficulty": "easy", "protein_type": "pork",
+      "nutrition_tags": ["spicy"], "baby_adaptable": false,
+      "ingredients": [
+        {"name": "五花肉", "qty": 250, "unit": "g", "note": "切薄片"},
+        {"name": "青椒", "qty": 4, "unit": "个", "note": "斜切"},
+        {"name": "蒜", "qty": 15, "unit": "g"},
+        {"name": "豆豉", "qty": 10, "unit": "g"},
+        {"name": "生抽", "qty": 15, "unit": "ml"},
+        {"name": "食用油", "qty": 10, "unit": "ml"}
+      ],
+      "steps": [
+        {"cn": "五花肉片小火煸出油至微焦，盛出多余油。", "en": "Render pork belly slices over low heat until lightly crisped, pour off excess fat."},
+        {"cn": "下蒜片豆豉爆香，加青椒大火炒至虎皮状。", "en": "Add garlic and black beans, then green peppers, stir-fry on high heat until blistered."},
+        {"cn": "倒回肉片，沿锅边淋生抽，大火翻炒半分钟出锅。", "en": "Return the pork, splash soy sauce around the wok edge, toss on high heat for 30 seconds and serve."}
+      ]
+    },
+    {
+      "name": "红烧肉", "name_en": "Braised pork belly", "cuisine": "江浙菜", "course": "main",
+      "minutes": 75, "difficulty": "medium", "protein_type": "pork",
+      "nutrition_tags": [], "baby_adaptable": false,
+      "ingredients": [
+        {"name": "五花肉", "qty": 600, "unit": "g", "note": "切4cm方块"},
+        {"name": "白糖", "qty": 30, "unit": "g", "note": "冰糖更佳"},
+        {"name": "生抽", "qty": 20, "unit": "ml"},
+        {"name": "老抽", "qty": 10, "unit": "ml"},
+        {"name": "料酒", "qty": 30, "unit": "ml"},
+        {"name": "姜", "qty": 20, "unit": "g"},
+        {"name": "葱", "qty": 2, "unit": "根"}
+      ],
+      "steps": [
+        {"cn": "五花肉冷水下锅焯水，捞出洗净沥干。", "en": "Blanch pork belly cubes starting from cold water, rinse and drain."},
+        {"cn": "小火炒糖色至琥珀色，下肉块翻炒裹色。", "en": "Caramelize sugar over low heat until amber, add pork and coat well."},
+        {"cn": "加料酒、生抽、老抽、姜葱和热水没过肉，小火炖60分钟。", "en": "Add cooking wine, both soy sauces, ginger, scallion and hot water to cover. Simmer 60 minutes."},
+        {"cn": "大火收汁至浓亮裹肉即可。", "en": "Reduce on high heat until the sauce is thick and glossy."}
+      ]
+    },
+    {
+      "name": "糖醋排骨", "name_en": "Sweet and sour ribs", "cuisine": "江浙菜", "course": "main",
+      "minutes": 50, "difficulty": "medium", "protein_type": "pork",
+      "nutrition_tags": [], "baby_adaptable": false,
+      "ingredients": [
+        {"name": "排骨", "qty": 500, "unit": "g"},
+        {"name": "香醋", "qty": 40, "unit": "ml"},
+        {"name": "白糖", "qty": 35, "unit": "g"},
+        {"name": "生抽", "qty": 20, "unit": "ml"},
+        {"name": "料酒", "qty": 20, "unit": "ml"},
+        {"name": "姜", "qty": 15, "unit": "g"},
+        {"name": "食用油", "qty": 15, "unit": "ml"}
+      ],
+      "steps": [
+        {"cn": "排骨焯水后中火煎至两面微黄。", "en": "Blanch the ribs, then pan-fry over medium heat until lightly golden."},
+        {"cn": "按1勺料酒、2勺生抽、3勺糖、4勺醋调汁倒入，加热水没过，小火炖30分钟。", "en": "Add the sauce (1 part wine, 2 soy sauce, 3 sugar, 4 vinegar) and hot water to cover. Simmer 30 minutes."},
+        {"cn": "大火收汁至挂勺，起锅前补少许香醋提香。", "en": "Reduce until the sauce coats a spoon; add a final splash of vinegar before serving."}
+      ]
+    },
+    {
+      "name": "番茄炒蛋", "name_en": "Tomato scrambled eggs", "cuisine": "家常", "course": "main",
+      "minutes": 15, "difficulty": "easy", "protein_type": "egg",
+      "nutrition_tags": ["quick"], "baby_adaptable": true,
+      "ingredients": [
+        {"name": "番茄", "qty": 3, "unit": "个"},
+        {"name": "鸡蛋", "qty": 4, "unit": "个"},
+        {"name": "白糖", "qty": 5, "unit": "g"},
+        {"name": "盐", "qty": null, "unit": "适量"},
+        {"name": "葱", "qty": 1, "unit": "根"},
+        {"name": "食用油", "qty": 20, "unit": "ml"}
+      ],
+      "steps": [
+        {"cn": "鸡蛋打散，热油快炒至刚凝固盛出；番茄去皮切块。", "en": "Beat the eggs and soft-scramble in hot oil, set aside. Peel and chop the tomatoes."},
+        {"cn": "番茄下锅中火炒出汁水至软烂。", "en": "Stir-fry tomatoes over medium heat until soft and juicy."},
+        {"cn": "给宝宝盛出一小份番茄加蛋。余下加盐、糖调味，倒回鸡蛋翻匀，撒葱花。", "en": "Portion out a small unseasoned serving with egg for the baby. Season the rest with salt and sugar, return the eggs, toss and finish with scallion.", "baby_split_point": true}
+      ]
+    },
+    {
+      "name": "土豆炖牛肉", "name_en": "Beef and potato stew", "cuisine": "家常", "course": "main",
+      "minutes": 90, "difficulty": "medium", "protein_type": "beef",
+      "nutrition_tags": ["high_protein"], "baby_adaptable": true,
+      "ingredients": [
+        {"name": "牛肉", "qty": 500, "unit": "g", "note": "牛腩切块"},
+        {"name": "土豆", "qty": 2, "unit": "个"},
+        {"name": "胡萝卜", "qty": 1, "unit": "根"},
+        {"name": "姜", "qty": 20, "unit": "g"},
+        {"name": "葱", "qty": 2, "unit": "根"},
+        {"name": "生抽", "qty": 20, "unit": "ml"},
+        {"name": "老抽", "qty": 10, "unit": "ml"},
+        {"name": "料酒", "qty": 30, "unit": "ml"},
+        {"name": "盐", "qty": null, "unit": "适量"}
+      ],
+      "steps": [
+        {"cn": "牛腩焯水，与姜葱料酒入锅，加热水没过，小火炖50分钟。", "en": "Blanch the beef, then simmer with ginger, scallion, cooking wine and hot water to cover for 50 minutes."},
+        {"cn": "下土豆胡萝卜块再炖20分钟至软烂。", "en": "Add potato and carrot chunks and simmer another 20 minutes until tender."},
+        {"cn": "给宝宝盛出软烂的牛肉土豆压碎。余下加生抽老抽和盐调味，收浓汤汁。", "en": "Portion out soft beef and potato for the baby, mashed. Season the rest with soy sauces and salt, reduce the sauce.", "baby_split_point": true}
+      ]
+    },
+    {
+      "name": "蒜蓉炒菜心", "name_en": "Stir-fried choy sum with garlic", "cuisine": "粤菜", "course": "side",
+      "minutes": 10, "difficulty": "easy", "protein_type": "none",
+      "nutrition_tags": ["leafy_veg", "quick"], "baby_adaptable": true,
+      "ingredients": [
+        {"name": "菜心", "qty": 400, "unit": "g"},
+        {"name": "蒜", "qty": 20, "unit": "g", "note": "切末"},
+        {"name": "盐", "qty": null, "unit": "适量"},
+        {"name": "食用油", "qty": 15, "unit": "ml"}
+      ],
+      "steps": [
+        {"cn": "菜心洗净沥干；给宝宝取嫩尖焯软切碎。", "en": "Wash and drain the choy sum. Blanch a few tender tips for the baby and chop finely.", "baby_split_point": true},
+        {"cn": "热油爆香蒜末，大火快炒菜心至断生，加盐翻匀出锅。", "en": "Sizzle garlic in hot oil, stir-fry choy sum on high heat until just tender, season with salt and serve."}
+      ]
+    },
+    {
+      "name": "清炒西兰花", "name_en": "Stir-fried broccoli", "cuisine": "家常", "course": "side",
+      "minutes": 10, "difficulty": "easy", "protein_type": "none",
+      "nutrition_tags": ["leafy_veg", "quick"], "baby_adaptable": true,
+      "ingredients": [
+        {"name": "西兰花", "qty": 1, "unit": "颗"},
+        {"name": "蒜", "qty": 15, "unit": "g"},
+        {"name": "盐", "qty": null, "unit": "适量"},
+        {"name": "食用油", "qty": 15, "unit": "ml"}
+      ],
+      "steps": [
+        {"cn": "西兰花切小朵，盐水浸泡10分钟后焯水1分钟。给宝宝留几朵焯久一点切碎。", "en": "Cut broccoli into florets, soak in salted water 10 minutes, blanch 1 minute. Blanch a few florets longer for the baby and chop.", "baby_split_point": true},
+        {"cn": "热油爆香蒜片，下西兰花大火翻炒1分钟，加盐调味。", "en": "Sizzle garlic slices in hot oil, stir-fry broccoli on high heat for 1 minute, season with salt."}
+      ]
+    },
+    {
+      "name": "手撕包菜", "name_en": "Hand-torn cabbage", "cuisine": "家常", "course": "side",
+      "minutes": 10, "difficulty": "easy", "protein_type": "none",
+      "nutrition_tags": ["quick"], "baby_adaptable": false,
+      "ingredients": [
+        {"name": "包菜", "qty": 0.5, "unit": "颗", "note": "手撕大片"},
+        {"name": "蒜", "qty": 15, "unit": "g"},
+        {"name": "干辣椒", "qty": 3, "unit": "g"},
+        {"name": "生抽", "qty": 10, "unit": "ml"},
+        {"name": "香醋", "qty": 10, "unit": "ml"},
+        {"name": "食用油", "qty": 15, "unit": "ml"}
+      ],
+      "steps": [
+        {"cn": "热油爆香蒜片和干辣椒段。", "en": "Sizzle garlic slices and dried chilies in hot oil."},
+        {"cn": "下包菜大火快炒至边缘微焦，沿锅边淋生抽香醋，翻匀出锅。", "en": "Stir-fry cabbage on high heat until edges char slightly, splash soy sauce and vinegar around the wok edge, toss and serve."}
+      ]
+    },
+    {
+      "name": "玉米胡萝卜排骨汤", "name_en": "Corn, carrot and pork rib soup", "cuisine": "粤菜", "course": "soup",
+      "minutes": 70, "difficulty": "easy", "protein_type": "pork",
+      "nutrition_tags": [], "baby_adaptable": true,
+      "ingredients": [
+        {"name": "排骨", "qty": 400, "unit": "g"},
+        {"name": "玉米", "qty": 1, "unit": "根", "note": "切段"},
+        {"name": "胡萝卜", "qty": 1, "unit": "根", "note": "切滚刀块"},
+        {"name": "姜", "qty": 15, "unit": "g"},
+        {"name": "盐", "qty": null, "unit": "适量"}
+      ],
+      "steps": [
+        {"cn": "排骨焯水洗净，与姜片入锅加足量热水，大火烧开转小火。", "en": "Blanch and rinse the ribs. Add to a pot with ginger and plenty of hot water, bring to a boil then lower the heat."},
+        {"cn": "下玉米胡萝卜，小火煲60分钟。", "en": "Add corn and carrot, simmer for 60 minutes."},
+        {"cn": "给宝宝盛出原味汤和软烂胡萝卜，余下加盐调味。", "en": "Serve the baby unsalted soup with soft carrot. Season the rest with salt.", "baby_split_point": true}
+      ]
+    },
+    {
+      "name": "紫菜蛋花汤", "name_en": "Seaweed egg drop soup", "cuisine": "家常", "course": "soup",
+      "minutes": 10, "difficulty": "easy", "protein_type": "egg",
+      "nutrition_tags": ["quick"], "baby_adaptable": true,
+      "ingredients": [
+        {"name": "紫菜", "qty": 5, "unit": "g"},
+        {"name": "鸡蛋", "qty": 2, "unit": "个"},
+        {"name": "葱", "qty": 1, "unit": "根"},
+        {"name": "盐", "qty": null, "unit": "适量"},
+        {"name": "香油", "qty": 5, "unit": "ml"}
+      ],
+      "steps": [
+        {"cn": "水烧开，撕入紫菜煮1分钟。", "en": "Bring water to a boil, tear in the seaweed and cook 1 minute."},
+        {"cn": "转小火淋入蛋液成蛋花。给宝宝先盛一小碗原味的。", "en": "Lower the heat and swirl in the beaten egg. Ladle a small unseasoned bowl for the baby first.", "baby_split_point": true},
+        {"cn": "加盐调味，滴香油撒葱花。", "en": "Season with salt, finish with sesame oil and scallion."}
+      ]
+    },
+    {
+      "name": "皮蛋瘦肉粥", "name_en": "Century egg and pork congee", "cuisine": "粤菜", "course": "breakfast",
+      "minutes": 50, "difficulty": "easy", "protein_type": "pork",
+      "nutrition_tags": [], "baby_adaptable": false,
+      "ingredients": [
+        {"name": "大米", "qty": 150, "unit": "g"},
+        {"name": "皮蛋", "qty": 2, "unit": "个", "note": "切丁"},
+        {"name": "猪瘦肉", "qty": 150, "unit": "g", "note": "切丝腌少许盐"},
+        {"name": "姜", "qty": 10, "unit": "g", "note": "切丝"},
+        {"name": "葱", "qty": 1, "unit": "根"},
+        {"name": "盐", "qty": null, "unit": "适量"},
+        {"name": "白胡椒粉", "qty": null, "unit": "适量"}
+      ],
+      "steps": [
+        {"cn": "大米加水大火烧开转小火，熬约35分钟至米开花。", "en": "Boil rice with water, then simmer about 35 minutes until the grains bloom."},
+        {"cn": "下肉丝、皮蛋丁和姜丝，再煮8分钟。", "en": "Add pork strips, century egg and ginger, cook another 8 minutes."},
+        {"cn": "加盐和白胡椒粉调味，撒葱花。", "en": "Season with salt and white pepper, top with scallion."}
+      ]
+    },
+    {
+      "name": "牛奶燕麦粥", "name_en": "Oatmeal with milk", "cuisine": "家常", "course": "breakfast",
+      "minutes": 10, "difficulty": "easy", "protein_type": "none",
+      "nutrition_tags": ["quick"], "baby_adaptable": true,
+      "ingredients": [
+        {"name": "燕麦片", "qty": 80, "unit": "g"},
+        {"name": "牛奶", "qty": 500, "unit": "ml"},
+        {"name": "鸡蛋", "qty": 2, "unit": "个", "note": "可选水煮蛋配餐"}
+      ],
+      "steps": [
+        {"cn": "燕麦片加水煮3分钟至软糯。", "en": "Cook oats in water for 3 minutes until soft."},
+        {"cn": "倒入牛奶小火煮开即关火，配水煮蛋。", "en": "Add milk, bring just to a simmer over low heat, serve with boiled eggs."}
+      ]
+    }
+  ]
+}
