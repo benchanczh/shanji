@@ -1,4 +1,7 @@
-.PHONY: dev build test up down
+.PHONY: dev build test up down seed
+
+-include .env
+export
 
 up: ## Start PostgreSQL (port 5433)
 	docker compose up -d db
