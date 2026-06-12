@@ -59,7 +59,12 @@ func (s *Server) handleRevokeMaidLink(w http.ResponseWriter, r *http.Request) {
 
 // GET /api/v1/maid/today?token=&date= — what to cook today, bilingual.
 func (s *Server) handleMaidToday(w http.ResponseWriter, r *http.Request, householdID int64) {
-	date := time.Now()
+	// Default to the server's local calendar date, normalized to a
+	// timezone-free UTC midnight so the SQL DATE comparison is exact.
+	// (time.Truncate(24h) cuts at UTC day boundaries and shifts the
+	// date for non-UTC servers.)
+	now := time.Now()
+	date := time.Date(now.Year(), now.Month(), now.Day(), 0, 0, 0, 0, time.UTC)
 	if d := r.URL.Query().Get("date"); d != "" {
 		parsed, err := time.Parse("2006-01-02", d)
 		if err != nil {
@@ -68,7 +73,7 @@ func (s *Server) handleMaidToday(w http.ResponseWriter, r *http.Request, househo
 		}
 		date = parsed
 	}
-	view, err := s.maid.TodayView(r.Context(), householdID, date.Truncate(24*time.Hour))
+	view, err := s.maid.TodayView(r.Context(), householdID, date)
 	if errors.Is(err, store.ErrNotFound) {
 		writeError(w, http.StatusNotFound, "no confirmed plan covers this date")
 		return
